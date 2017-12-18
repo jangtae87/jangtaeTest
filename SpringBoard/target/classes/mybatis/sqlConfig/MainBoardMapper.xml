@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.open.myBoard.mainboard.mapper.MainBoardMapper">
+
+    <select id="getBoardList" resultType="com.open.myBoard.mainboard.vo.BoardVO">
+		select 
+			`seq` AS `seq`,
+		    `title` AS `title`,
+		    `text` AS `text`,
+		    `writer` AS `writer`,
+		    `password` AS `password`,
+		    `date` AS `date`
+		from `mainboard`
+	<if test="seq != 0">
+		where seq = #{seq}
+	</if>
+		 
+    </select>
+	
+	<select id="selectSeq" resultType="String">
+		select max(seq)+1 from mainboard
+	</select>
+
+	<insert id="insertWrite" parameterType="com.open.myBoard.mainboard.vo.BoardVO" >
+		INSERT INTO `mainboard` 
+		(
+			`seq`, 
+			`title`, 
+			`text`, 
+			`writer`, 
+			`password`, 
+			`date`
+		) 
+		VALUES 
+		(
+			#{seq}, 
+			#{title}, 
+			#{text}, 
+			#{writer}, 
+			#{password}, 
+			sysdate()
+		);
+		
+	</insert>
+	
+	<update id="updateWriteData">
+		update `mainboard` set
+			title = #{title}, 
+			text = #{text},
+			writer = #{writer},
+		where seq = #{seq}
+	</update>
+
+
+</mapper>
+

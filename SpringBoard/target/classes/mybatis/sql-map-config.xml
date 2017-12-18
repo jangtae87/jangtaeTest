@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sqlMapConfig>
+	<settings
+		cacheModelsEnabled="true"
+		enhancementEnabled="true"
+		lazyLoadingEnabled="true"
+		maxRequests="128"
+		maxSessions="32"
+		maxTransactions="16"
+		useStatementNamespaces="true"
+	/>
+		
+	<sqlMap resource="sqlmap/Emp.xml"/> 
+	
+</sqlMapConfig>
